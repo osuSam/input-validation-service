@@ -14,13 +14,35 @@ def is_dollar(input):
   # Matches input to the dollar regex. Returns True if valid dollar amount; else False.
   return bool(re.match(dollar_pattern, input.strip()))
 
-# Checks input.txt for content; validates content & writes to output.txt when detected
+def is_positive(input):
+  try:
+    return float(input) > 0
+  except:
+    return False
+  
+def is_alpha(input):
+  return input.isalpha()
+
+# Checks input.txt for content; processes content based on validator & writes to output.txt when detected
 while True:
   content = input_txt.read_text().strip()
   if content:
-    time.sleep(0.9)
-    if is_dollar(content):
-      output_txt.write_text("True")
-    else:
+    try:
+      validator, value = content.split("|", 1)
+
+      if validator == "dollar":
+        result = is_dollar(value)
+      elif validator == "positive":
+        result = is_positive(value)
+      elif validator == "alpha":
+        result = is_alpha(value)
+      else:
+        result = False
+      output_txt.write_text(str(result))
+
+    except:
       output_txt.write_text("False")
-  input_txt.write_text("")
+
+    # clear input.txt
+    input_txt.write_text("")
+  time.sleep(0.1)
