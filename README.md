@@ -26,3 +26,8 @@ Example call:.
 output_txt.write_text(str(result))
 Example response:
 True
+
+**UML DIAGRAM BELOW:**
+<img width="1076" height="477" alt="UML_inputvalidate" src="https://github.com/user-attachments/assets/1cc3ac69-7cee-4b6a-94b4-f62186cd6440" />
+
+
